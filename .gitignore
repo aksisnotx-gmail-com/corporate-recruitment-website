@@ -16,3 +16,4 @@ buildNumber.properties
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 /.idea/
+/企业招聘网站springbootmmbp84br/springbootmmbp84br/src/main/resources/admin/admin/node_modules/
