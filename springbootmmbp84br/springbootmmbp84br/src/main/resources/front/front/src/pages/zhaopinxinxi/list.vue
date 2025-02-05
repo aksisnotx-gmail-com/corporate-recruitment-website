@@ -27,6 +27,10 @@
 	    <div class="lable" v-if="true" :style='{"width":"auto","padding":"0 0 0 10px","lineHeight":"42px","textAlign":"right","display":"inline-block"}'>企业名称：</div>
         <el-input v-model="formSearch.qiyemingcheng" placeholder="企业名称" @keydown.enter.native="getList(1, curFenlei)" clearable></el-input>
       </el-form-item>
+      <el-form-item :style='{"margin":"0 10px 0 0"}' v-if="swiperIndex === -1">
+        <div class="lable" v-if="true" :style='{"width":"auto","padding":"0 0 0 10px","lineHeight":"42px","textAlign":"right","display":"inline-block"}'>岗位名称：</div>
+        <el-input v-model="formSearch.gangweimingcheng" placeholder="岗位名称" @keydown.enter.native="getList(1, curFenlei)" clearable></el-input>
+      </el-form-item>
 	  <el-button v-if=" true " :style='{"cursor":"pointer","border":"0","padding":"0px 15px","margin":"0px 10px 0 10px","color":"#fff","display":"inline-block","outline":"none","borderRadius":"0px","background":"#ff777f","width":"100px","fontSize":"14px","lineHeight":"36px","height":"36px"}' type="primary" @click="getList(1, curFenlei)"><i v-if="true" :style='{"color":"#fff","margin":"0 10px 0 0","fontSize":"14px"}' class="el-icon-search"></i>查询</el-button>
 	  <el-button v-if="btnAuth('zhaopinxinxi','新增')" :style='{"cursor":"pointer","border":"0px solid #ddd","padding":"0px 15px","margin":"0px 10px 0 0","color":"#fff","display":"inline-block","outline":"none","borderRadius":"0px","background":"#c5c5c5","width":"80px","fontSize":"14px","lineHeight":"36px","height":"36px"}' type="primary" @click="add('/index/zhaopinxinxiAdd')"><i v-if="false" :style='{"color":"#fff","margin":"0 10px 0 0","fontSize":"14px"}' class="el-icon-circle-plus-outline"></i>添加</el-button>
     </el-form>
@@ -115,6 +119,7 @@
         ],
         formSearch: {
           qiyemingcheng: '',
+          gangweimingcheng:'',
         },
         fenlei: [],
 		feileiColumn: '',
@@ -187,6 +192,7 @@
         let params = {page, limit: this.pageSize};
         let searchWhere = {};
         if (this.formSearch.qiyemingcheng != '') searchWhere.qiyemingcheng = '%' + this.formSearch.qiyemingcheng + '%';
+        if (this.formSearch.gangweimingcheng != '') searchWhere.gangweifenlei = '%' + this.formSearch.gangweimingcheng + '%';
 		if(!this.centerType){
 			params['sfsh'] = '是';
 		}

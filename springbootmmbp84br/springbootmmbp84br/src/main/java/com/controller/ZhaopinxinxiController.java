@@ -1,45 +1,21 @@
 package com.controller;
 
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Date;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-
-import com.utils.ValidatorUtils;
+import com.annotation.IgnoreAuth;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.entity.ZhaopinxinxiEntity;
+import com.entity.view.ZhaopinxinxiView;
+import com.service.StoreupService;
+import com.service.ZhaopinxinxiService;
+import com.utils.MPUtil;
+import com.utils.PageUtils;
+import com.utils.R;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.annotation.IgnoreAuth;
+import org.springframework.web.bind.annotation.*;
 
-import com.entity.ZhaopinxinxiEntity;
-import com.entity.view.ZhaopinxinxiView;
-
-import com.service.ZhaopinxinxiService;
-import com.service.TokenService;
-import com.utils.PageUtils;
-import com.utils.R;
-import com.utils.MPUtil;
-import com.utils.MapUtils;
-import com.utils.CommonUtil;
-import java.io.IOException;
-import com.service.StoreupService;
-import com.entity.StoreupEntity;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 /**
  * 招聘信息
@@ -88,6 +64,8 @@ public class ZhaopinxinxiController {
     public R list(@RequestParam Map<String, Object> params,ZhaopinxinxiEntity zhaopinxinxi, 
 		HttpServletRequest request){
         EntityWrapper<ZhaopinxinxiEntity> ew = new EntityWrapper<ZhaopinxinxiEntity>();
+
+
 
 		PageUtils page = zhaopinxinxiService.queryPage(params, MPUtil.sort(MPUtil.between(MPUtil.likeOrEq(ew, zhaopinxinxi), params), params));
         return R.ok().put("data", page);
